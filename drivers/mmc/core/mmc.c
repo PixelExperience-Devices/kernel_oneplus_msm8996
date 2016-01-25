@@ -587,10 +587,9 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
 			card->ext_csd.bkops_en = ext_csd[EXT_CSD_BKOPS_EN];
 			card->ext_csd.raw_bkops_status =
 				ext_csd[EXT_CSD_BKOPS_STATUS];
-			pr_info("%s: BKOPS_EN equals 0x%x\n",
+			pr_debug("%s: BKOPS_EN equals 0x%x\n",
 					mmc_hostname(card->host),
 					card->ext_csd.bkops_en);
-
 		}
 
 		card->ext_csd.rel_param = ext_csd[EXT_CSD_WR_REL_PARAM];
