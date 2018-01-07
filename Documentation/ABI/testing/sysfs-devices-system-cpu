@@ -225,6 +225,7 @@ Description:	Parameters for the Intel P-state driver
 
 		More details can be found in Documentation/cpu-freq/intel-pstate.txt
 
+
 What:		/sys/devices/system/cpu/cpu*/cache/index*/<set_of_attributes_mentioned_below>
 Date:		July 2014(documented, existed before August 2008)
 Contact:	Sudeep Holla <sudeep.holla@arm.com>
@@ -271,3 +272,20 @@ Description:	Parameters for the CPU cache attributes
 			- WriteBack: data is written only to the cache line and
 				     the modified cache line is written to main
 				     memory only when it is replaced
+
+
+What:		/sys/devices/system/cpu/vulnerabilities
+		/sys/devices/system/cpu/vulnerabilities/meltdown
+		/sys/devices/system/cpu/vulnerabilities/spectre_v1
+		/sys/devices/system/cpu/vulnerabilities/spectre_v2
+Date:		Januar 2018
+Contact:	Linux kernel mailing list <linux-kernel@vger.kernel.org>
+Description:	Information about CPU vulnerabilities
+
+		The files are named after the code names of CPU
+		vulnerabilities. The output of those files reflects the
+		state of the CPUs in the system. Possible output values:
+
+		"Not affected"	  CPU is not affected by the vulnerability
+		"Vulnerable"	  CPU is affected and no mitigation in effect
+		"Mitigation: $M"  CPU is affetcted and mitigation $M is in effect
