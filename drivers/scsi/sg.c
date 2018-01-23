@@ -926,7 +926,6 @@ sg_ioctl(struct file *filp, unsigned int cmd_in, unsigned long arg)
 				val = (int) sfp->reserve.bufflen;
 				sg_remove_scat(sfp, &sfp->reserve);
 				sg_build_reserve(sfp, val);
-				mutex_unlock(&sfp->parentdp->open_rel_lock);
 			}
 		} else {
 			if (atomic_read(&sdp->detaching))
