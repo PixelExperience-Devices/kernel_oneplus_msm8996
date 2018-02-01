@@ -235,6 +235,7 @@ static void option_instat_callback(struct urb *urb);
 #define QUALCOMM_VENDOR_ID			0x05C6
 
 #define QUECTEL_PRODUCT_BG96			0x0296
+#define QUECTEL_PRODUCT_EP06			0x0306
 
 #define SIERRA_VENDOR_ID			0x1199
 
@@ -627,6 +628,11 @@ static const struct option_blacklist_info sierra_mc73xx_blacklist = {
 
 static const struct option_blacklist_info fibocom_nl668_iot_blacklist = {
 	.reserved = BIT(4) | BIT(5) | BIT(6),
+
+};
+
+static const struct option_blacklist_info quectel_ep06_blacklist = {
+	.reserved = BIT(4) | BIT(5),
 };
 
 static const struct usb_device_id option_ids[] = {
@@ -1135,6 +1141,8 @@ static const struct usb_device_id option_ids[] = {
 	  .driver_info = (kernel_ulong_t)&sierra_mc73xx_blacklist }, /* MC73xx */
 	{ USB_DEVICE(QUECTEL_VENDOR_ID, QUECTEL_PRODUCT_BG96),
 	  .driver_info = (kernel_ulong_t)&net_intf4_blacklist },
+	{ USB_DEVICE(QUECTEL_VENDOR_ID, QUECTEL_PRODUCT_EP06),
+	  .driver_info = (kernel_ulong_t)&quectel_ep06_blacklist },
 	{ USB_DEVICE(CMOTECH_VENDOR_ID, CMOTECH_PRODUCT_6001) },
 	{ USB_DEVICE(CMOTECH_VENDOR_ID, CMOTECH_PRODUCT_CMU_300) },
 	{ USB_DEVICE(CMOTECH_VENDOR_ID, CMOTECH_PRODUCT_6003),
