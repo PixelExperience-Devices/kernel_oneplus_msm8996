@@ -420,10 +420,6 @@ int __ref cpu_down(unsigned int cpu)
 	if ((1U << cpu) & blocked_cpus)
 		return -EINVAL;
 
-	/* kthreads require one little-cluster CPU to stay online */
-	if (!cpu)
-		return -EINVAL;
-
 	cpu_maps_update_begin();
 
 	if (cpu_hotplug_disabled) {
