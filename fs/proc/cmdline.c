@@ -46,7 +46,7 @@ static void remove_safetynet_flags(char *cmd)
 	if (offset_addr != NULL)
 		strncpy(offset_addr + 17, "normal", 6);
 
-	char *offset_addr, *cmd = new_command_line;
+	*cmd = new_command_line;
 
 	remove_flag(cmd, "androidboot.enable_dm_verity=");
 	remove_flag(cmd, "androidboot.secboot=");
