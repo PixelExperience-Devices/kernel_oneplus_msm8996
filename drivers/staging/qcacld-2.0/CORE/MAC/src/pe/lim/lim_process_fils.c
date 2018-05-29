@@ -378,6 +378,14 @@ static uint32_t lim_process_fils_eap_tlv(tpPESession pe_session,
 		VOS_TRACE(VOS_MODULE_ID_PE, VOS_TRACE_LEVEL_INFO,
 				FL("tlv type %x len %u total %u"),
 				tlv->type, tlv->length, data_len);
+
+		if (tlv->length > (data_len - 2)) {
+			VOS_TRACE(VOS_MODULE_ID_PE, VOS_TRACE_LEVEL_INFO,
+					FL("tlv len %d greater data_len %d"),
+					tlv->type, tlv->length, data_len);
+			return 0;
+		}
+
 		switch (tlv->type) {
 			case SIR_FILS_EAP_TLV_KEYNAME_NAI:
 				auth_info->keyname = vos_mem_malloc(tlv->length);
