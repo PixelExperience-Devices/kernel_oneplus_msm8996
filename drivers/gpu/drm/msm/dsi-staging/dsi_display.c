@@ -80,6 +80,9 @@ static ssize_t debugfs_dump_info_read(struct file *file,
 			"\tClock master = %s\n",
 			display->ctrl[display->clk_master_idx].ctrl->name);
 
+	if (len > user_len)
+		len = user_len;
+
 	if (copy_to_user(buff, buf, len)) {
 		kfree(buf);
 		return -EFAULT;
