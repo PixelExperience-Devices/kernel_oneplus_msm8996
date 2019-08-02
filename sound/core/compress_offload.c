@@ -715,8 +715,13 @@ static int snd_compr_drain(struct snd_compr_stream *stream)
 	mutex_lock(&stream->device->lock);
 	if (stream->runtime->state == SNDRV_PCM_STATE_PREPARED ||
 			stream->runtime->state == SNDRV_PCM_STATE_OPEN ||
+			stream->runtime->state == SNDRV_PCM_STATE_PAUSED ||
 			stream->runtime->state == SNDRV_PCM_STATE_SETUP) {
 		retval = -EPERM;
+		goto ret;
+	}
+	if (stream->runtime->state == SNDRV_PCM_STATE_XRUN) {
+		retval = -EPIPE;
 		goto ret;
 	}
 	mutex_unlock(&stream->device->lock);
@@ -761,9 +766,14 @@ static int snd_compr_partial_drain(struct snd_compr_stream *stream)
 	mutex_lock(&stream->device->lock);
 	if (stream->runtime->state == SNDRV_PCM_STATE_PREPARED ||
 			stream->runtime->state == SNDRV_PCM_STATE_OPEN ||
+			stream->runtime->state == SNDRV_PCM_STATE_PAUSED ||
 			stream->runtime->state == SNDRV_PCM_STATE_SETUP) {
 		mutex_unlock(&stream->device->lock);
 		return -EPERM;
+	}
+	if (stream->runtime->state == SNDRV_PCM_STATE_XRUN) {
+		mutex_unlock(&stream->device->lock);
+		return -EPIPE;
 	}
 	mutex_unlock(&stream->device->lock);
 	/* stream can be drained only when next track has been signalled */
