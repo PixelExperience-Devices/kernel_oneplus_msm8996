@@ -283,7 +283,7 @@ int adreno_ringbuffer_probe(struct adreno_device *adreno_dev, bool nopreempt)
 
 	if (!adreno_is_a3xx(adreno_dev)) {
 		status = kgsl_allocate_global(device, &device->scratch,
-				PAGE_SIZE, 0, 0, "scratch");
+				PAGE_SIZE, 0, KGSL_MEMDESC_RANDOM, "scratch");
 		if (status != 0)
 			return status;
 	}
@@ -1003,7 +1003,7 @@ int adreno_ringbuffer_submitcmd(struct adreno_device *adreno_dev,
 	}
 
 	/*
-	 * Add IB1 to read the GPU ticks at the start of command obj and
+	 * Add IB1 to read the GPU ticks at the start of the cmdbatch and
 	 * write it into the appropriate cmdbatch profiling buffer offset
 	 */
 	if (cmdbatch_user_profiling) {
@@ -1046,7 +1046,7 @@ int adreno_ringbuffer_submitcmd(struct adreno_device *adreno_dev,
 	}
 
 	/*
-	 * Add IB1 to read the GPU ticks at the end of command obj and
+	 * Add IB1 to read the GPU ticks at the end of the cmdbatch and
 	 * write it into the appropriate cmdbatch profiling buffer offset
 	 */
 	if (cmdbatch_user_profiling) {
