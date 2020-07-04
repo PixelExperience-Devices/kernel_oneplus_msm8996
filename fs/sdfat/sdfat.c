@@ -46,6 +46,7 @@
 #include <linux/hash.h>
 #include <linux/backing-dev.h>
 #include <linux/sched.h>
+#include <linux/fs.h>
 #include <linux/fs_struct.h>
 #include <linux/namei.h>
 #include <linux/bio.h>
@@ -238,21 +239,6 @@ static inline unsigned int __sdfat_full_name_hash(const struct dentry *unused, c
 static inline unsigned long __sdfat_init_name_hash(const struct dentry *unused)
 {
 	return init_name_hash();
-}
-#endif
-
-
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 4, 21)
-       /* EMPTY */
-#else /* LINUX_VERSION_CODE < KERNEL_VERSION(4, 4, 21) */
-static inline void inode_lock(struct inode *inode)
-{
-	       mutex_lock(&inode->i_mutex);
-}
-
-static inline void inode_unlock(struct inode *inode)
-{
-	       mutex_unlock(&inode->i_mutex);
 }
 #endif
 
