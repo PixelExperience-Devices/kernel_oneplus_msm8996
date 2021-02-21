@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-Panther-Kernel-DerpFest-"
+CONFIG_LOCALVERSION="-Panther-Kernel-PE-"
 # CONFIG_LOCALVERSION_AUTO is not set
 # CONFIG_USELIB is not set
 CONFIG_AUDIT=y
