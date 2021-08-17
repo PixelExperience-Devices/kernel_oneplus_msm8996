@@ -40,12 +40,6 @@ static void remove_flag(char *cmd, const char *flag)
 
 static void remove_safetynet_flags(char *cmd)
 {
-	char *offset_addr;
-
-	offset_addr = strstr(saved_command_line, "androidboot.mode=reboot");
-	if (offset_addr != NULL)
-		strncpy(offset_addr + 17, "normal", 6);
-
 	*cmd = new_command_line;
 
 	remove_flag(cmd, "androidboot.enable_dm_verity=");
