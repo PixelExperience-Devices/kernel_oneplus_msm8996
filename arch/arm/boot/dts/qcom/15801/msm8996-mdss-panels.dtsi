@@ -133,8 +133,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
 	qcom,esd-check-enabled;
 	qcom,mdss-dsi-panel-status-check-mode = "te_signal_check";
-	qcom,ulps-enabled;
-	qcom,panel-allow-phy-poweroff;
+	qcom,mdss-dsi-lp11-init;
+	qcom,mdss-dsi-init-delay-us = <10000>;
 	cm,mdss-livedisplay-cabc-cmd = [
 		15 01 00 00 00 00 02 55 00];
 	cm,mdss-livedisplay-cabc-ui-value = <0x03>;
@@ -175,8 +175,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
 	qcom,esd-check-enabled;
 	qcom,mdss-dsi-panel-status-check-mode = "te_signal_check";
-	qcom,ulps-enabled;
-	qcom,panel-allow-phy-poweroff;
+	qcom,mdss-dsi-lp11-init;
+	qcom,mdss-dsi-init-delay-us = <10000>;
 	cm,mdss-livedisplay-cabc-cmd = [
 		15 01 00 00 00 00 02 55 00];
 	cm,mdss-livedisplay-cabc-ui-value = <0x03>;
